@@ -18,7 +18,6 @@ export default function Session({
 
   const handleClick = () => {
     window.scroll({ top: 0, behavior: "smooth" });
-
     getSessionInfo(session, raceName, countryName);
   };
 

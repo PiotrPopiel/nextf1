@@ -5,6 +5,7 @@ import { RaceType } from "@/types";
 import { DateTime } from "luxon";
 import { useEffect, useState } from "react";
 import RaceInfo from "./RaceInfo";
+import { revalidatePath } from "next/cache";
 
 type TimerProps = {
   nextRace: RaceType | undefined;
@@ -43,6 +44,7 @@ export default function Timer({ nextRace }: TimerProps) {
         ]);
       } else {
         setDuration([undefined, undefined, undefined, undefined]);
+        revalidatePath("/");
       }
     }, 1000);
 
