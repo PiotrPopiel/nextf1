@@ -40,6 +40,7 @@ function SessionInfoProvider({ children }: ChildrenProps) {
   ) => {
     if (session) {
       const sessionDate = `${session.date}T${session.time}`;
+
       setSessionInfo({
         sessionName: session.name,
         sessionDate,
