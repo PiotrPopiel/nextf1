@@ -29,6 +29,7 @@ export type FetchRace = {
   SecondPractice: {};
   ThirdPractice: {};
   Qualifying?: {};
+  SprintQualifying?: {};
   Sprint?: {};
 };
 

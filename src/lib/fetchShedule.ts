@@ -23,17 +23,21 @@ const fetchShedule = async (
         time: race.time,
         sessions: [
           { ...race.FirstPractice, name: "First Practice" },
-          { ...race.SecondPractice, name: "Second Practice" },
+          race.SecondPractice
+            ? { ...race.SecondPractice, name: "Second Practice" }
+            : undefined,
           race.ThirdPractice
             ? { ...race.ThirdPractice, name: "Third Practice" }
             : undefined,
           { ...race.Qualifying, name: "Qualifying" },
+          race.SprintQualifying
+            ? { ...race.SprintQualifying, name: "Sprint Qualifying" }
+            : undefined,
           race.Sprint ? { ...race.Sprint, name: "Sprint" } : undefined,
           { date: race.date, time: race.time, name: "Race" },
         ],
       };
     });
-    console.log(races[1].sessions);
 
     return races as RaceType[];
   } catch (error) {
