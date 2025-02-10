@@ -6,12 +6,7 @@ const fetchShedule = async (
   year = currentYear
 ): Promise<RaceType[] | undefined> => {
   try {
-    const response = await fetch(
-      `https://api.jolpi.ca/ergast/f1/${year}.json`,
-      {
-        cache: "no-store",
-      }
-    );
+    const response = await fetch(`https://api.jolpi.ca/ergast/f1/${year}.json`);
     const data: FetchRacesData = await response.json();
 
     const races = data.MRData.RaceTable.Races.map((race) => {
