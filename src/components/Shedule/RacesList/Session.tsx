@@ -24,7 +24,7 @@ export default function Session({
   return (
     <button
       onClick={handleClick}
-      className="hover:bg-slate-900 w-full flex p-1">
+      className="hover:bg-slate-900 cursor-pointer w-full flex p-1">
       <p className="text-sm self-start ml-2 p-2">| {session && session.name}</p>
     </button>
   );
