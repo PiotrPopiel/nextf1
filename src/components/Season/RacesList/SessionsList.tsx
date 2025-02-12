@@ -18,5 +18,5 @@ export default function SessionList({ race }: SessionListProps) {
       )
   );
 
-  return <div className="flex flex-col p-2 w-full">{renderedSessions}</div>;
+  return <div className="p-2">{renderedSessions}</div>;
 }

@@ -1,9 +1,9 @@
-import Shedule from "@/components/Shedule/Shedule";
+import Season from "@/components/Season/Season";
 
 export default async function Home() {
   return (
     <main className="w-full">
-      <Shedule />
+      <Season />
     </main>
   );
 }

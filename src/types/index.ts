@@ -33,7 +33,7 @@ export type FetchRace = {
   Sprint?: {};
 };
 
-export type FetchRacesData = {
+export type FetchSeasonData = {
   MRData: {
     RaceTable: {
       Races: FetchRace[];

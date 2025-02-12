@@ -1,13 +1,13 @@
-import type { FetchRacesData, RaceType } from "../types";
+import type { FetchSeasonData, RaceType } from "../types";
 
 const currentYear = new Date().getFullYear().toString();
 
-const fetchShedule = async (
+const fetchSeason = async (
   year = currentYear
 ): Promise<RaceType[] | undefined> => {
   try {
     const response = await fetch(`https://api.jolpi.ca/ergast/f1/${year}.json`);
-    const data: FetchRacesData = await response.json();
+    const data: FetchSeasonData = await response.json();
 
     const races = data.MRData.RaceTable.Races.map((race) => {
       return {
@@ -40,4 +40,4 @@ const fetchShedule = async (
   }
 };
 
-export { fetchShedule };
+export { fetchSeason };

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const links = ["Shedule"];
+const links = ["Season 2025"];
 
 export default function Navbar() {
   const renderedLinks = links.map((link, idx) => (

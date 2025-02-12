@@ -5,10 +5,10 @@ import { useState } from "react";
 import type { RaceType } from "@/types";
 
 type RacesListProps = {
-  shedule: RaceType[] | undefined;
+  season: RaceType[] | undefined;
 };
 
-export default function RacesList({ shedule }: RacesListProps) {
+export default function RacesList({ season }: RacesListProps) {
   const [expandedIndex, setExpandedIndex] = useState(-1);
 
   const handleExpandedIndex = (index: number) => {
@@ -21,10 +21,10 @@ export default function RacesList({ shedule }: RacesListProps) {
 
   return (
     <>
-      {!shedule ? (
+      {!season ? (
         <p className="p-2">No Data...</p>
       ) : (
-        shedule.map((race) => {
+        season.map((race) => {
           const isExpanded = Number(race.id) === expandedIndex;
 
           return (

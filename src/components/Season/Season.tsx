@@ -1,12 +1,12 @@
 import RacesList from "./RacesList/RacesList";
 import Countdown from "./Countdown/Countdown";
 import { SessionInfoProvider } from "@/contexts/SessionInfo";
-import { fetchShedule } from "@/lib/fetchShedule";
+import { fetchSeason } from "@/lib/fetchSeason";
 import calcNextRace from "@/lib/calcNextRace";
 
-export default async function Shedule() {
-  const shedule = await fetchShedule();
-  const nextRace = calcNextRace(shedule);
+export default async function Season() {
+  const season = await fetchSeason();
+  const nextRace = calcNextRace(season);
 
   return (
     <div className="w-full flex flex-col items-center gap-20 h-full md:flex-row-reverse md:items-start md:justify-end">
@@ -15,8 +15,8 @@ export default async function Shedule() {
           <Countdown nextRace={nextRace} />
         </div>
 
-        <div className="w-full max-w-[640px] h-full md:max-w-[370px] ">
-          <RacesList shedule={shedule} />
+        <div className="w-full max-w-[640px] h-full md:max-w-[370px]">
+          <RacesList season={season} />
         </div>
       </SessionInfoProvider>
     </div>
