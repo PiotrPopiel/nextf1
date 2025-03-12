@@ -20,7 +20,7 @@ export default function RacesList({ season }: RacesListProps) {
   };
 
   return (
-    <div className="w-full max-w-[640px] md:max-w-[370px]">
+    <ul className="w-full max-w-[640px] md:max-w-[370px]">
       {!season ? (
         <div className="w-full flex justify-center">
           <p className="p-2 text-xl">No Data...</p>
@@ -39,6 +39,6 @@ export default function RacesList({ season }: RacesListProps) {
           );
         })
       )}
-    </div>
+    </ul>
   );
 }

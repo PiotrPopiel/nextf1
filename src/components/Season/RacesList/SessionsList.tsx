@@ -19,5 +19,5 @@ export default function SessionList({ race }: SessionListProps) {
       )
   );
 
-  return <div className="p-2">{renderedSessions}</div>;
+  return <ul className="p-2">{renderedSessions}</ul>;
 }
