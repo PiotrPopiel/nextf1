@@ -9,6 +9,8 @@ export default function calcNextRace(season: RaceType[] | undefined) {
       const raceDate = `${race.date}T${race.time}`;
       if (now < raceDate) {
         return race;
+      } else {
+        return season[season.length - 1];
       }
     });
     return nextRaces[0];

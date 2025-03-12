@@ -16,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="">
       <body className={`${lato.className} antialiased`}>
-        <div className="bg-slate-950 text-gray-50 h-full">
+        <div className="bg-slate-950 text-gray-50">
           <Navbar />
           {children}
         </div>

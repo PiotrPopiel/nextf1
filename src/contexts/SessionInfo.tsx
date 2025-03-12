@@ -1,11 +1,7 @@
 "use client";
 
-import { RaceType, SessionType } from "@/types";
+import { SessionType } from "@/types";
 import { createContext, useContext, useState } from "react";
-
-type ChildrenProps = {
-  children: React.ReactNode;
-};
 
 type SessionInfoContextProps = {
   getSessionInfo: (
@@ -19,6 +15,10 @@ type SessionInfoContextProps = {
     raceName: string;
     countryName: string;
   };
+};
+
+type ChildrenProps = {
+  children: React.ReactNode;
 };
 
 const SessionInfoContext = createContext<SessionInfoContextProps | undefined>(

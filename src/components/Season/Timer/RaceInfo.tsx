@@ -16,15 +16,20 @@ export default function RaceInfo({
 }: RaceInfo) {
   return (
     <div className="flex flex-col gap-2 font-bold  items-center p-5">
-      <Image
-        alt={country}
-        src={`/country-flags/${country}.svg`}
-        width={80}
-        height={50}
-      />
+      {country && (
+        <Image
+          alt={country}
+          src={`/country-flags/${country}.svg`}
+          width={80}
+          height={50}
+        />
+      )}
+
       <h1 className="text-3xl mb-2">{raceName}</h1>
       <p className="text-xl">{sessionName}</p>
-      <p className="text-lg">({raceTime.toFormat("cccc t")})</p>
+      {raceTime.isValid && (
+        <p className="text-lg">({raceTime.toFormat("cccc t")})</p>
+      )}
     </div>
   );
 }

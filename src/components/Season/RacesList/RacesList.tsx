@@ -20,9 +20,11 @@ export default function RacesList({ season }: RacesListProps) {
   };
 
   return (
-    <>
+    <div className="w-full max-w-[640px] md:max-w-[370px]">
       {!season ? (
-        <p className="p-2">No Data...</p>
+        <div className="w-full flex justify-center">
+          <p className="p-2 text-xl">No Data...</p>
+        </div>
       ) : (
         season.map((race) => {
           const isExpanded = Number(race.id) === expandedIndex;
@@ -37,6 +39,6 @@ export default function RacesList({ season }: RacesListProps) {
           );
         })
       )}
-    </>
+    </div>
   );
 }

@@ -6,6 +6,7 @@ import { DateTime } from "luxon";
 import { useEffect, useState } from "react";
 import RaceInfo from "./RaceInfo";
 import { revalidatePath } from "next/cache";
+import LoadingSpinner from "@/components/LoadingSpinner";
 
 type TimerProps = {
   nextRace: RaceType | undefined;
@@ -35,24 +36,19 @@ export default function Timer({ nextRace }: TimerProps) {
         .normalize()
         .toObject();
 
-      if (diff.seconds && diff.seconds > 0) {
-        setDuration([
-          diff.days,
-          diff.hours,
-          diff.minutes,
-          diff.seconds && Math.floor(diff.seconds),
-        ]);
-      } else {
-        setDuration([undefined, undefined, undefined, undefined]);
-        revalidatePath("/");
-      }
+      setDuration([
+        diff.days,
+        diff.hours,
+        diff.minutes,
+        diff.seconds && Math.floor(diff.seconds),
+      ]);
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [now, target, sessionDate]);
+  }, [now, target]);
 
   return (
-    <>
+    <div className="w-full max-w-[640px] md:max-w-full ">
       {sessionName === "" && nextRace ? (
         <RaceInfo
           country={nextRace.country}
@@ -67,7 +63,15 @@ export default function Timer({ nextRace }: TimerProps) {
           sessionName={sessionName}
         />
       )}
-      {seconds !== undefined ? (
+      {seconds === undefined ? (
+        <div className="flex justify-center items-center h-[88px] w-[640px] md:h-full md:w-full">
+          <LoadingSpinner />
+        </div>
+      ) : seconds <= 0 ? (
+        <div className="flex justify-center items-center p-4">
+          <h1 className="text-3xl underline">Session Finished</h1>
+        </div>
+      ) : (
         <div className="flex flex-wrap gap-3 justify-center items-center">
           <div className="flex flex-col items-center p-2">
             <h2 className="text-5xl">{days}</h2>
@@ -86,11 +90,7 @@ export default function Timer({ nextRace }: TimerProps) {
             <p>seconds</p>
           </div>
         </div>
-      ) : (
-        <div className="flex justify-center items-center p-4">
-          <h1 className="text-3xl underline">Session Finished</h1>
-        </div>
       )}
-    </>
+    </div>
   );
 }

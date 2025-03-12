@@ -1,23 +1,24 @@
 import RacesList from "./RacesList/RacesList";
-import Countdown from "./Countdown/Countdown";
+import Timer from "./Timer/Timer";
 import { SessionInfoProvider } from "@/contexts/SessionInfo";
-import { fetchSeason } from "@/lib/fetchSeason";
-import calcNextRace from "@/lib/calcNextRace";
 
-export default async function Season() {
-  const season = await fetchSeason();
+import calcNextRace from "@/lib/calcNextRace";
+import { RaceType } from "@/types";
+import { use } from "react";
+
+type SeasonProps = {
+  seasonPromise: Promise<RaceType[] | undefined>;
+};
+
+export default function Season({ seasonPromise }: SeasonProps) {
+  const season = use(seasonPromise);
   const nextRace = calcNextRace(season);
 
   return (
     <div className="w-full flex flex-col items-center gap-20 h-full md:flex-row-reverse md:items-start md:justify-end">
       <SessionInfoProvider>
-        <div className="w-full max-w-[640px] md:max-w-full ">
-          <Countdown nextRace={nextRace} />
-        </div>
-
-        <div className="w-full max-w-[640px] h-full md:max-w-[370px]">
-          <RacesList season={season} />
-        </div>
+        <Timer nextRace={nextRace} />
+        <RacesList season={season} />
       </SessionInfoProvider>
     </div>
   );
