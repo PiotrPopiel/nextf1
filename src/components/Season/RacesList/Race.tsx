@@ -9,21 +9,32 @@ type RaceProps = {
   handleExpandedIndex: (index: number) => void;
 };
 
+type EventType = React.KeyboardEvent<HTMLDivElement> &
+  React.MouseEvent<HTMLDivElement>;
+
 export default function Race({
   race,
   isExpanded,
   handleExpandedIndex,
 }: RaceProps) {
-  const raceTime = DateTime.fromISO(`${race.date}T${race.time}`);
+  let raceTime;
+  if (race.date && race.time) {
+    raceTime = DateTime.fromISO(`${race.date}T${race.time}`);
+  } else {
+    raceTime = null;
+  }
 
-  function handleClick() {
-    handleExpandedIndex(Number(race.id));
+  function handleClick(e: EventType) {
+    if (e.key === "Enter" || e.type === "click")
+      handleExpandedIndex(Number(race.id));
   }
 
   return (
     <>
-      <button
+      <div
         onClick={handleClick}
+        onKeyDown={handleClick}
+        tabIndex={+race.id}
         className="w-full flex py-3 px-5 items-center hover:bg-slate-900 justify-between cursor-pointer border-b-[1px] border-slate-900 ">
         <div className="flex items-center gap-5">
           <Image
@@ -36,9 +47,9 @@ export default function Race({
         </div>
 
         <span className="text-xs text-gray-400">
-          {raceTime.toFormat("d LLL")}
+          {raceTime ? raceTime.toFormat("d LLL") : <p>No Date</p>}
         </span>
-      </button>
+      </div>
       {isExpanded && <SessionsList race={race} />}
     </>
   );

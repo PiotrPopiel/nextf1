@@ -7,10 +7,11 @@ type SessionListProps = {
 
 export default function SessionList({ race }: SessionListProps) {
   const renderedSessions = race.sessions.map(
-    (session, idx) =>
+    (session) =>
       session && (
         <Session
-          key={idx}
+          key={session.name}
+          tabIdx={+race.id + 0.1}
           session={session}
           raceName={race.name}
           countryName={race.country}
