@@ -67,7 +67,7 @@ export default function Timer({ nextRace }: TimerProps) {
         <div className="flex justify-center items-center h-[88px] w-[640px] md:h-full md:w-full">
           <LoadingSpinner />
         </div>
-      ) : seconds <= 0 ? (
+      ) : seconds < 0 ? (
         <div className="flex justify-center items-center p-4">
           <h1 className="text-3xl underline">Session Finished</h1>
         </div>
