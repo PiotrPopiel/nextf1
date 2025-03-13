@@ -3,13 +3,9 @@ import Season from "@/components/Season/Season";
 import { fetchSeason } from "@/lib/fetchSeason";
 import { Suspense } from "react";
 
-type YearPageProps = {
-  params: {
-    year: string;
-  };
-};
+type Params = Promise<{ year: string }>;
 
-export default async function YearPage({ params }: YearPageProps) {
+export default async function YearPage({ params }: { params: Params }) {
   const { year } = await params;
   const seasonPromise = fetchSeason(year);
   return (
