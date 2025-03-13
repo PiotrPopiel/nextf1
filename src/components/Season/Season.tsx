@@ -15,7 +15,7 @@ export default function Season({ seasonPromise }: SeasonProps) {
   const nextRace = calcNextRace(season);
 
   return (
-    <div className="w-full flex flex-col items-center gap-20 h-full md:flex-row-reverse md:items-start md:justify-end">
+    <div className="min-h-screen w-full flex flex-col items-center gap-20 h-full md:flex-row-reverse md:items-start md:justify-end">
       <SessionInfoProvider>
         <Timer nextRace={nextRace} />
         <RacesList season={season} />

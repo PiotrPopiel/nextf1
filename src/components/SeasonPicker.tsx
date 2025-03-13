@@ -44,7 +44,10 @@ export default function SeasonPicker() {
 
   const seasonList = seasons.map((year) => {
     return year !== season ? (
-      <p onClick={handleOption} className="p-2 w-[100px]  hover:bg-slate-700">
+      <p
+        key={+year}
+        onClick={handleOption}
+        className="p-2 w-[100px] hover:bg-slate-700">
         {year}
       </p>
     ) : null;
@@ -62,9 +65,9 @@ export default function SeasonPicker() {
           <IoMdArrowDropdown className={`${isOpen && `rotate-180`} text-xl`} />
         </div>
         {isOpen && (
-          <div className="absolute left-0 top-10 bg-slate-800 flex flex-col  text-center divide-y-1 divide-slate-700">
+          <li className="absolute left-0 top-10 bg-slate-800 flex flex-col  text-center divide-y-1 divide-slate-700">
             {seasonList}
-          </div>
+          </li>
         )}
       </div>
     </div>
