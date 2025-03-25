@@ -1,5 +1,5 @@
 "use client";
-import { redirect } from "next/navigation";
+import { redirect, useParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { IoMdArrowDropdown } from "react-icons/io";
 
@@ -11,8 +11,10 @@ for (let i = now; i > now - 5; i--) {
 }
 
 export default function SeasonPicker() {
+  const params = useParams();
+  const activeSeason = params.year || seasons[0];
   const [isOpen, setIsOpen] = useState(false);
-  const [season, setSeason] = useState(seasons[0]);
+  const [season, setSeason] = useState(activeSeason);
   const divEl = useRef<HTMLDivElement>(null);
 
   const handleOption = (e: any) => {
@@ -26,7 +28,6 @@ export default function SeasonPicker() {
 
   useEffect(() => {
     const handler = (e: any) => {
-      console.log(e.current);
       if (!divEl.current) {
         return;
       }

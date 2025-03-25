@@ -1,10 +1,12 @@
+"use client";
+
 import RacesList from "./RacesList/RacesList";
-import Timer from "./Timer/Timer";
 import { SessionInfoProvider } from "@/contexts/SessionInfo";
 
 import calcNextRace from "@/lib/calcNextRace";
 import { RaceType } from "@/types";
 import { use } from "react";
+import ActiveSession from "./ActiveSession/ActiveSession";
 
 type SeasonProps = {
   seasonPromise: Promise<RaceType[] | undefined>;
@@ -12,12 +14,11 @@ type SeasonProps = {
 
 export default function Season({ seasonPromise }: SeasonProps) {
   const season = use(seasonPromise);
-  const nextRace = calcNextRace(season);
 
   return (
     <div className="min-h-screen w-full flex flex-col items-center gap-20 h-full md:flex-row-reverse md:items-start md:justify-end">
       <SessionInfoProvider>
-        <Timer nextRace={nextRace} />
+        <ActiveSession season={season} />
         <RacesList season={season} />
       </SessionInfoProvider>
     </div>

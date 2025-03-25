@@ -40,3 +40,23 @@ export type FetchSeasonData = {
     };
   };
 };
+
+export type ResultType = {
+  Constructor: {
+    [key: string]: string;
+  };
+  Driver: {
+    [key: string]: string;
+  };
+
+  Time: {
+    [key: string]: string;
+  };
+  position: string;
+  points: string;
+  Q1?: string;
+  Q2?: string;
+  Q3?: string;
+};
+
+export type ResultsType = ResultType[];

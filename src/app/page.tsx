@@ -3,7 +3,7 @@ import Season from "@/components/Season/Season";
 import { fetchSeason } from "@/lib/fetchSeason";
 import { Suspense } from "react";
 
-export default async function Home() {
+export default function Home() {
   const seasonPromise = fetchSeason();
 
   return (
